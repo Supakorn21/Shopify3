@@ -1,3 +1,4 @@
+
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
@@ -18,21 +19,16 @@
   {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 {% endif %}
 
-<div
-  class="utility-bar color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
-  {{ block.shopify_attributes }}
->
-  <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
+<div class="announce-bar" style="background: {{ section.settings.background_color }}; color: {{section.settings.announcement-text-color}};"  aria-label="{{ 'sections.header.announcement' | t }}"
+    {{ block.shopify_attributes }}>
+
+
+
     {%- if section.settings.show_social and social_icons -%}
       {%- render 'social-icons' -%}
     {%- endif -%}
     {%- if section.blocks.size == 1 -%}
-      <div
-        class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
-        role="region"
-        aria-label="{{ 'sections.header.announcement' | t }}"
-        {{ block.shopify_attributes }}
-      >
+   
         {%- if section.blocks.first.settings.text != blank -%}
           {%- if section.blocks.first.settings.link != blank -%}
             <a
@@ -218,6 +214,7 @@
   </div>
 </div>
 
+
 {% schema %}
 {
   "name": "t:sections.announcement-bar.name",
@@ -232,6 +229,18 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
+    },
+    {
+      "type": "color_background",
+      "id": "background_color",
+      "label": "background color",
+      "default": "black"
+    },
+    {
+      "type": "color",
+      "id": "announcement-text-color",
+      "label": "Announcement Text Color",
+      "default": "red"
     },
     {
       "type": "checkbox",
