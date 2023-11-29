@@ -34,10 +34,11 @@
             <a
               href="{{ section.blocks.first.settings.link }}"
               class="announcement-bar__link link link--text focus-inset animate-arrow"
+              style="color: {{ section.blocks.first.settings.announcement-text-color }};"
             >
           {%- endif -%}
           <p class="announcement-bar__message h5">
-            <span style="color: {{section.settings.announcement-text-color}};">{{ section.blocks.first.settings.text | escape }}</span>
+            <span >{{ section.blocks.first.settings.text | escape }}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {% render 'icon-arrow' %}
             {%- endif -%}
@@ -93,10 +94,11 @@
                       <a
                         href="{{ block.settings.link }}"
                         class="announcement-bar__link link link--text focus-inset animate-arrow"
+                       
                       >
                     {%- endif -%}
                     <p class="announcement-bar__message h5" >
-                      <span >{{ block.settings.text | escape }}</span>
+                      <span  style="color: {{ block.settings.announcement-text-color }};" >{{ block.settings.text | escape }}</span>
                       {%- if block.settings.link != blank -%}
                         {% render 'icon-arrow' %}
                       {%- endif -%}
@@ -231,12 +233,6 @@
       "default": "#1b1b1b"
     },
     {
-      "type": "color",
-      "id": "announcement-text-color",
-      "label": "Announcement Text Color",
-      "default": "#fff"
-    },
-    {
       "type": "checkbox",
       "id": "show_line_separator",
       "default": true,
@@ -306,6 +302,12 @@
           "id": "text",
           "default": "Welcome to our store",
           "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+        },
+        {
+          "type": "color",
+          "id": "announcement-text-color",
+          "label": "Announcement Text Color",
+          "default": "#fff"
         },
         {
           "type": "url",
