@@ -19,7 +19,7 @@
   {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 {% endif %}
 
-<div class="announce-bar" style="background: {{ section.settings.background_color }} !important; color: {{section.settings.announcement-text-color}} !important;"  aria-label="{{ 'sections.header.announcement' | t }}"
+<div class="announce-bar" style="background: {{ section.settings.announcement_background_color }} !important; color: {{section.settings.announcement-text-color}} !important;"  aria-label="{{ 'sections.header.announcement' | t }}"
     {{ block.shopify_attributes }}>
 
 
@@ -226,8 +226,8 @@
   "settings": [
     {
       "type": "color_background",
-      "id": "background_color",
-      "label": "background color",
+      "id": "announcement_background_color",
+      "label": "Announcement Background Color",
       "default": "#1b1b1b"
     },
     {
