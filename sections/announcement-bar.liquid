@@ -19,7 +19,7 @@
   {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 {% endif %}
 
-<div class="announce-bar" style="background: {{ section.settings.background_color }}; color: {{section.settings.announcement-text-color}};"  aria-label="{{ 'sections.header.announcement' | t }}"
+<div class="announce-bar" style="background: {{ section.settings.background_color }} !important; color: {{section.settings.announcement-text-color}} !important;"  aria-label="{{ 'sections.header.announcement' | t }}"
     {{ block.shopify_attributes }}>
 
 
@@ -37,7 +37,7 @@
             >
           {%- endif -%}
           <p class="announcement-bar__message h5">
-            <span>{{ section.blocks.first.settings.text | escape }}</span>
+            <span style="color: {{section.settings.announcement-text-color}};">{{ section.blocks.first.settings.text | escape }}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {% render 'icon-arrow' %}
             {%- endif -%}
@@ -95,8 +95,8 @@
                         class="announcement-bar__link link link--text focus-inset animate-arrow"
                       >
                     {%- endif -%}
-                    <p class="announcement-bar__message h5">
-                      <span>{{ block.settings.text | escape }}</span>
+                    <p class="announcement-bar__message h5" >
+                      <span >{{ block.settings.text | escape }}</span>
                       {%- if block.settings.link != blank -%}
                         {% render 'icon-arrow' %}
                       {%- endif -%}
@@ -228,13 +228,13 @@
       "type": "color",
       "id": "background_color",
       "label": "background color",
-      "default": "black"
+      "default": "#ffff"
     },
     {
       "type": "color",
       "id": "announcement-text-color",
       "label": "Announcement Text Color",
-      "default": "red"
+      "default": "green"
     },
     {
       "type": "checkbox",
