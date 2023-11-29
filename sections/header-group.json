@@ -17,7 +17,8 @@
         "announcement-bar-0"
       ],
       "settings": {
-        "color_scheme": "scheme-3",
+        "announcement_background_color": "linear-gradient(54deg, rgba(60, 127, 91, 1) 14%, rgba(255, 250, 99, 1) 85%)",
+        "announcement-text-color": "#fff",
         "show_line_separator": true,
         "show_social": false,
         "auto_rotate": false,
