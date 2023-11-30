@@ -9,7 +9,7 @@
           "type": "announcement",
           "settings": {
             "text": "50%OFF CHRISMAST 2023",
-            "announcement-text-color": "#fff",
+            "announcement-text-color": "#ffffff",
             "link": "shopify:\/\/collections\/adidas"
           }
         },
@@ -39,8 +39,10 @@
     "header": {
       "type": "header",
       "settings": {
+        "header_type": "header1",
         "logo_position": "middle-left",
         "menu": "main-menu",
+        "menu_two": "main-menu-2",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
