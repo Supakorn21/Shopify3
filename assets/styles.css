@@ -7310,7 +7310,7 @@ a:hover {
 }
 .fixed-nav .header {
   transition: 0.3s ease-in-out;
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: 20;
 }
