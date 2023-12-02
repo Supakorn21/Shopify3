@@ -26,7 +26,20 @@
         {% endif %}
       </ul>
       <div class="header1__logo">
-        <a href="/">Company</a>
+        <a href="{{ routes.root_url }}">
+          {%- if settings.logo != blank -%}
+            <div class="header__heading-logo-wrapper">
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+              {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+              {{ settings.logo | image_url: width: 600 | image_tag: class: 'header__heading-logo', widths: widths, height: logo_height, width: settings.logo_width, alt: logo_alt, sizes: sizes, preload: true
+              }}
+            </div>
+          {%- else -%}
+            {{ shop.name }}
+          {%- endif -%}
+        </a>
       </div>
       <ul class="header1__collections-nav">
         {% if section.settings.menu_two != blank %}
@@ -51,130 +64,170 @@
             {% endif %}
           {%- endfor -%}
         {% endif %}
-        <a href="/cart">
+        <a href="{{ routes.cart_url }}">
           <i class="fas fa-shopping-cart"></i>
         </a>
-        <a href="/cart">
-          <i class="fas fa-user"></i>
-        </a>
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+            <i class="fas fa-user"></i>
+          </a>
+        {%- endif -%}
       </ul>
     </header>
   {% when "header2" %}
     <header class="header header2">
       <div class="header2__logo">
-        <a href="/">Company</a>
+        <a href="{{ routes.root_url }}">
+          {%- if settings.logo != blank -%}
+            <div class="header__heading-logo-wrapper">
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+              {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+              {{ settings.logo | image_url: width: 600 | image_tag: class: 'header__heading-logo', widths: widths, height: logo_height, width: settings.logo_width, alt: logo_alt, sizes: sizes, preload: true
+              }}
+            </div>
+          {%- else -%}
+            {{ shop.name }}
+          {%- endif -%}
+        </a>
       </div>
       <ul class="header2__collections-nav">
-        <li class="header2__collection-link">
-          <a href="/link">Link top
-            <i class="fas fa-chevron-down"></i>
-          </a>
-          <ul class="collection-link__sub-links">
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-          </ul>
-        </li>
-        <li class="header2__collection-link">
-          <a href="/link">Link</a>
-        </li>
-        <li class="header2__collection-link">
-          <a href="/link">Link</a>
-        </li>
+        {% if section.settings.menu != blank %}
+          {%- for link in section.settings.menu.links -%}
+            {% if link.links == blank %}
+              <li class="header2__collection-link">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% else %}
+              <li class="header2__collection-link">
+                <a href="{{ link.url }}">{{ link.title }}
+                  <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="collection-link__sub-links">
+                  {%- for sublink in link.links -%}
+                    <li>
+                      <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
       </ul>
       <div class="header2__collections-nav">
-        <a href="/cart">
+        <a href="{{ routes.cart_url }}">
           <i class="fas fa-shopping-cart"></i>
         </a>
-        <a href="/cart">
-          <i class="fas fa-user"></i>
-        </a>
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+            <i class="fas fa-user"></i>
+          </a>
+        {%- endif -%}
       </div>
     </header>
   {% when "header3" %}
     <header class="header header3">
       <div class="header3__logo">
-        <a href="/">Company</a>
+        <a href="{{ routes.root_url }}">
+          {%- if settings.logo != blank -%}
+            <div class="header__heading-logo-wrapper">
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+              {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+              {{ settings.logo | image_url: width: 600 | image_tag: class: 'header__heading-logo', widths: widths, height: logo_height, width: settings.logo_width, alt: logo_alt, sizes: sizes, preload: true
+              }}
+            </div>
+          {%- else -%}
+            {{ shop.name }}
+          {%- endif -%}
+        </a>
       </div>
       <ul class="header3__collections-nav">
-        <li class="header3__collection-link">
-          <a href="/link">Link top
-            <i class="fas fa-chevron-down"></i>
-          </a>
-          <ul class="collection-link__sub-links">
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-            <li>
-              <a href="#">Link</a>
-            </li>
-          </ul>
-        </li>
-        <li class="header3__collection-link">
-          <a href="/link">Link</a>
-        </li>
-        <li class="header3__collection-link">
-          <a href="/link">Link</a>
-        </li>
-        <a href="/link" class="header3__collection-link">Link</a>
-        <a href="/cart">
+        {% if section.settings.menu != blank %}
+          {%- for link in section.settings.menu.links -%}
+            {% if link.links == blank %}
+              <li class="header3__collection-link">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% else %}
+              <li class="header3__collection-link">
+                <a href="{{ link.url }}">{{ link.title }}
+                  <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="collection-link__sub-links">
+                  {%- for sublink in link.links -%}
+                    <li>
+                      <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {% endif %}
+          {%- endfor -%}
+        {% endif %}
+        <a href="{{ routes.cart_url }}">
           <i class="fas fa-shopping-cart"></i>
         </a>
-        <a href="/cart">
-          <i class="fas fa-user"></i>
-        </a>
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+            <i class="fas fa-user"></i>
+          </a>
+        {%- endif -%}
       </ul>
     </header>
   {% when "header4" %}
     <header class="header header4 fixed-nav">
       <div class="header4__logo">
-        <a href="/">Shirt By TNX</a>
+        <a href="{{ routes.root_url }}">
+          {%- if settings.logo != blank -%}
+            <div class="header__heading-logo-wrapper">
+              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+              {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+              {{ settings.logo | image_url: width: 600 | image_tag: class: 'header__heading-logo', widths: widths, height: logo_height, width: settings.logo_width, alt: logo_alt, sizes: sizes, preload: true
+              }}
+            </div>
+          {%- else -%}
+            {{ shop.name }}
+          {%- endif -%}
+        </a>
       </div>
       <ul class="header4__collections-nav">
-        <li class="header4__collection-link">
-          <a href="javascript:void(0)">Link
-            <i class="fa-solid fa-chevron-down"></i>
-            <ul class="header4__sub-links">
-              <li>
-                <a href="http://google.com/">Men</a>
+        {% if section.settings.menu != blank %}
+          {%- for link in section.settings.menu.links -%}
+            {% if link.links == blank %}
+              <li class="header4__collection-link">
+                <a href="{{ link.url }}">{{ link.title }}</a>
               </li>
-              <li>
-                <a href="#">Link</a>
+            {% else %}
+              <li class="header4__collection-link">
+                <a href="{{ link.url }}">{{ link.title }}
+                  <i class="fa-solid fa-chevron-down"></i>
+                </a>
+                <ul class="header4__sub-links">
+                  {%- for sublink in link.links -%}
+                    <li>
+                      <a href="{{ sublink.url }}">{{ sublink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+
               </li>
-              <li>
-                <a href="#">Link</a>
-              </li>
-              <li>
-                <a href="#">Link</a>
-              </li>
-            </ul>
-          </a>
-        </li>
-        <li class="header4__collection-link">
-          <a href="/link">Link</a>
-        </li>
-        <a href="/link" class="header4__collection-link">Link</a>
-        <a href="/cart">
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        <a href="{{ routes.cart_url }}">
           <i class="fas fa-shopping-cart"></i>
         </a>
-        <a href="/cart">
-          <i class="fas fa-user"></i>
-        </a>
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+            <i class="fas fa-user"></i>
+          </a>
+        {%- endif -%}
       </ul>
     </header>
 {% endcase %}
@@ -211,31 +264,6 @@
         "default": "header1"
       },
       {
-        "type": "select",
-        "id": "logo_position",
-        "options": [
-          {
-            "value": "top-left",
-            "label": "t:sections.header.settings.logo_position.options__2.label"
-          },
-          {
-            "value": "top-center",
-            "label": "t:sections.header.settings.logo_position.options__3.label"
-          },
-          {
-            "value": "middle-left",
-            "label": "t:sections.header.settings.logo_position.options__1.label"
-          },
-          {
-            "value": "middle-center",
-            "label": "t:sections.header.settings.logo_position.options__4.label"
-          }
-        ],
-        "default": "middle-left",
-        "label": "t:sections.header.settings.logo_position.label",
-        "info": "t:sections.header.settings.logo_help.content"
-      },
-      {
         "type": "link_list",
         "id": "menu",
         "default": "main-menu",
@@ -267,30 +295,6 @@
         "default": "dropdown",
         "label": "t:sections.header.settings.menu_type_desktop.label",
         "info": "t:sections.header.settings.menu_type_desktop.info"
-      },
-      {
-        "type": "select",
-        "id": "sticky_header_type",
-        "options": [
-          {
-            "value": "none",
-            "label": "t:sections.header.settings.sticky_header_type.options__1.label"
-          },
-          {
-            "value": "on-scroll-up",
-            "label": "t:sections.header.settings.sticky_header_type.options__2.label"
-          },
-          {
-            "value": "always",
-            "label": "t:sections.header.settings.sticky_header_type.options__3.label"
-          },
-          {
-            "value": "reduce-logo-size",
-            "label": "t:sections.header.settings.sticky_header_type.options__4.label"
-          }
-        ],
-        "default": "on-scroll-up",
-        "label": "t:sections.header.settings.sticky_header_type.label"
       },
       {
         "type": "checkbox",
@@ -339,22 +343,6 @@
       {
         "type": "header",
         "content": "t:sections.header.settings.mobile_layout.content"
-      },
-      {
-        "type": "select",
-        "id": "mobile_logo_position",
-        "options": [
-          {
-            "value": "center",
-            "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
-          },
-          {
-            "value": "left",
-            "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
-          }
-        ],
-        "default": "center",
-        "label": "t:sections.header.settings.mobile_logo_position.label"
       },
       {
         "type": "header",
