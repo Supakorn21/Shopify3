@@ -402,7 +402,6 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
   background: #000;
   color: #fff;
   font-size: 1.2rem;
@@ -434,8 +433,9 @@ table {
 .hero1__image {
   width: 100%;
   object-fit: cover;
-  object-position: top;
-  height: 100%;
+  object-position: center;
+  height: 66vh;
+  overflow: visible;
 }
 .hero1__image-div {
   width: 100%;
@@ -447,11 +447,12 @@ table {
 }
 .hero1__content-container,
 .hero1__image-overlay {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+    width: 100%;
+    height: 108.6%;
+    position: absolute;
+    top: -84px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
 }
 .hero1__content-container,
 .hero1__info {
@@ -526,8 +527,9 @@ table {
 .hero2__image {
   width: 100%;
   object-fit: cover;
-  object-position: top;
-  height: 100%;
+  object-position: center;
+  height: 66vh;
+  overflow: visible;
 }
 .hero2__image-div {
   width: 100%;
@@ -1103,7 +1105,6 @@ h4,
 h5,
 h6 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
   color: var(--bs-heading-color);
@@ -7310,7 +7311,6 @@ a:hover {
 }
 .fixed-nav .header {
   transition: 0.3s ease-in-out;
-  position: absolute;
   width: 100%;
   z-index: 20;
 }
