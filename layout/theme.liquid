@@ -45,18 +45,22 @@
     {%- endif -%}
 
 
-    {% assign rootUrl = request.host | append: routes.root_url %}
+{% assign rootUrl = request.host | append: routes.root_url %}
     {% assign currentUrl = canonical_url | remove: 'https://' %}
-    {% if currentUrl == rootUrl %}
+    {% comment %} {% if currentUrl == rootUrl %}
       <script>
               document.addEventListener('DOMContentLoaded', function () {
+                var FixTransHeader = document.querySelector('.fixed-nav.transparent-nav .header');
+                var typoHeader = document.querySelectorAll('.fixed-nav.transparent-nav .header a');
+                var typoSublink = document.querySelectorAll('.fixed-nav.transparent-nav .header .collection-link__sub-links a');
+                var typoIcon = document.querySelectorAll('.fixed-nav.transparent-nav .header i');
+
+                // add postion fixed to header
+                // FixTransHeader.style.position = 'fixed';
                   window.addEventListener('scroll', function () {
-                    var FixTransHeader = document.querySelector('.fixed-nav.transparent-nav .header');
-                    var typoHeader = document.querySelectorAll('.fixed-nav.transparent-nav .header a');
-                    var typoSublink = document.querySelectorAll('.fixed-nav.transparent-nav .header .collection-link__sub-links a');
-                    var typoIcon = document.querySelectorAll('.fixed-nav.transparent-nav .header i');
 
                     if (window.scrollY > 0) {
+                      // FixTransHeader.style.position = "";
                       FixTransHeader.style.background = 'white';
 
                       typoHeader.forEach(function (ele) {
@@ -66,6 +70,7 @@
                         ele.style.color = 'black';
                       });
                     } else if (window.scrollY === 0) {
+                        // FixTransHeader.style.position = 'fixed';
                       FixTransHeader.style.background = 'transparent';
 
                       typoHeader.forEach(function (ele) {
@@ -102,8 +107,29 @@
           
               });
       </script>
-    {% endif %}
+    {% endif %}  {% endcomment %}
 
+
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+
+              var FixTransHeader = document.querySelector('.fixed-nav.transparent-nav .header');
+              var typoHeader = document.querySelectorAll('.fixed-nav.transparent-nav .header a');
+              var typoIcon = document.querySelectorAll('.fixed-nav.transparent-nav .header i');
+
+
+              FixTransHeader.style.background = 'white';
+
+              typoHeader.forEach(function (ele) {
+                ele.style.color = 'black';
+              });
+              typoIcon.forEach(function (ele) {
+                ele.style.color = 'black';
+              });
+
+            });
+          </script> 
 
     {{ content_for_header }}
 
