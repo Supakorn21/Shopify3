@@ -29,7 +29,7 @@
         "template--17057218658561__ce8a65ce-dd10-477d-a51f-2cd84fb620b5-button-1"
       ],
       "settings": {
-        "image": "shopify://shop_images/model-in-neutral-colors-by-window.jpg",
+        "image": "shopify:\/\/shop_images\/model-in-neutral-colors-by-window.jpg",
         "overlay_color": "#000000",
         "opacity": 50,
         "info_alignment": "center",
@@ -51,8 +51,8 @@
     "hero-2": {
       "type": "hero-two",
       "settings": {
-        "image": "shopify://shop_images/fashion-model-in-fur.jpg",
-        "image2": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
+        "image": "shopify:\/\/shop_images\/fashion-model-in-fur.jpg",
+        "image2": "shopify:\/\/shop_images\/model-in-sunglasses-and-summer-clothes.jpg"
       }
     }
   },
