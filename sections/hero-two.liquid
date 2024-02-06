@@ -1,0 +1,249 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="hero hero2 hero2--{{section.settings.hero_height}}">
+  <div class="hero2__collection1 hero2--aligned-{{ section.settings.info_alignment }}">
+    <div class="hero2__image-div">
+        {%- if section.settings.image != blank -%}
+          {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
+            {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
+            {%- capture sizes -%}
+          (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
+          (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
+          {%- endcapture -%}
+          {%- else -%}
+            {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+            {%- capture sizes -%}
+          (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+          (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+          {%- endcapture -%}
+          {%- endif -%}
+          {{
+            section.settings.image | image_url: width: '1500' | image_tag: sizes: sizes, widths: '2000', fetchpriority: fetch_priority, class: "hero2__image" }}
+
+        {%- else -%}
+          {{ 'detailed-apparel-1' | placeholder_svg_tag: 'hero2__image' }}
+
+        {%- endif -%}
+      <div class="hero2__image-overlay"></div>
+    </div>
+    {% assign opacity = section.settings.opacity | divided_by: 100.00 %}
+    <div class="hero2__content-container"  style="background-color: {{ section.settings.overlay_color |  color_modify: 'alpha', opacity }};">
+      <div class="hero2__info">
+        {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link }}" class="hero2__button" {{ section.shopify_attributes }}>{{
+              section.settings.button_label | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  <div class="hero2__collection2 hero2--aligned-{{ section.settings.info_alignment2 }}">
+    <div class="hero2__image-div">
+        {%- if section.settings.image2 != blank -%}
+        {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
+        {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
+        {%- capture sizes -%}
+            (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
+            (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
+        {%- endcapture -%}
+        {%- else -%}
+        {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+        {%- capture sizes -%}
+            (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+            (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+        {%- endcapture -%}
+        {%- endif -%}
+            {{
+            section.settings.image2 | image_url: width: '1500' | image_tag: sizes: sizes, widths: '2000', fetchpriority:
+            fetch_priority, class: "hero2__image" }}
+        
+        {%- else -%}
+            {{ 'detailed-apparel-1' | placeholder_svg_tag: 'hero2__image' }}
+        
+        {%- endif -%}
+      <div class="hero2__image-overlay"></div>
+    </div>
+    {% assign opacity2 = section.settings.opacity2 | divided_by: 100.00 %}
+    <div class="hero2__content-container" style="background-color: {{ section.settings.overlay_color2 |  color_modify: 'alpha', opacity2 }};">
+      <div class="hero2__info">
+        {%- if section.settings.button_label2 != blank -%}
+          <a href="{{ section.settings.button_link2 }}" class="hero2__button" {{ section.shopify_attributes }}>{{
+            section.settings.button_label2 | escape }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  if section.settings.color_scheme == section.settings.section_color_scheme and section.settings.content_layout == 'no-overlap'
+    assign remove_color_classes = true
+  endif
+-%}
+
+
+{% schema %}
+  {
+    "name": "Hero Two",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+        {
+          "type": "select",
+          "id": "hero_height",
+          "options": [
+              {
+                "value": "25vh",
+                "label": "25%"
+              },
+              {
+                "value": "50vh",
+                "label": "50%"
+              },
+              {
+                "value": "75vh",
+                "label": "70%"
+              },
+              {
+                "value": "100vh",
+                "label": "100%"
+              }
+          ],
+          "default": "100vh",
+          "label": "Height"
+        },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "t:sections.image-with-text.settings.image.label"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Overlay Color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "label": "Opacity Range",
+        "default": 50
+      },
+      {
+      "type": "text",
+      "id": "button_label",
+      "default": "Men",
+      "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+      "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+      },
+      {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link"
+      },
+      {
+          "type": "select",
+          "id": "info_alignment",
+          "options": [
+            {
+                "value": "left",
+                "label": "Left"
+            },
+            {
+                "value": "center",
+                "label": "Center"
+            },
+            {
+                "value": "right",
+                "label": "Right"
+            }
+          ],
+          "default": "right",
+          "label": "Info Alignment"
+      },
+      {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "t:sections.image-with-text.settings.image.label"
+      },
+        {
+        "type": "color",
+        "id": "overlay_color2",
+        "label": "Overlay Color",
+        "default": "#000000"
+        },
+        {
+        "type": "range",
+        "id": "opacity2",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "label": "Opacity Range",
+        "default": 50
+        },
+        {
+        "type": "text",
+        "id": "button_label2",
+        "default": "Women",
+        "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+        "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+        },
+        {
+        "type": "url",
+        "id": "button_link2",
+        "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "info_alignment2",
+          "options": [
+            {
+                "value": "left",
+                "label": "Left"
+            },
+            {
+                "value": "center",
+                "label": "Center"
+            },
+            {
+                "value": "right",
+                "label": "Right"
+            }
+          ],
+          "default": "left",
+          "label": "Info Alignment"
+        }
+    ],
+    "blocks": [
+    ],
+    "presets": [
+      {
+        "name": "Hero Two",
+        "blocks": [
+        ]
+      }
+    ]
+  }
+{% endschema %}

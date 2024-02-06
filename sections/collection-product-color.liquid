@@ -1,0 +1,412 @@
+
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="collection collection3">
+  <div class="container">
+    <div class="row">
+      {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+        {% assign productImage = product.images %}
+      <div class="{{ section.settings.xxl_col }} {{ section.settings.xl_col }} {{ section.settings.lg_col }} {{ section.settings.md_col }} {{ section.settings.sm_col }}">
+        <div class="collection3__collection-item">
+          <div class="collection3__product-img collection3__product-img--{{ section.settings.background_shape }} collection3__product-img--{{ section.settings.image_fit }}" style="background-color: {{ section.settings.product_bg }};">
+            <div class="collection3__heart">
+              <i class="fa-regular fa-heart"></i>
+            </div>
+              <a href="{{ product.url }}">
+              {%- if productImage.size > 0 -%}
+                {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
+                {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
+                {%- capture sizes -%}
+                (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
+                (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
+                {%- endcapture -%}
+                {%- else -%}
+                {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+                {%- capture sizes -%}
+                (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+                (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+                {%- endcapture -%}
+                {%- endif -%}
+                {{
+                productImage[0] | image_url: width: '1500' | image_tag: sizes: sizes, widths: '2000', fetchpriority: fetch_priority, class: 'collection3__img-front', url: product.url
+                }}
+                
+              {%- else -%}
+                  {{ 'detailed-apparel-1' | placeholder_svg_tag: 'collection3__img-front' }}
+                 
+              
+              {%- endif -%}
+              {%- if productImage.size > 0 -%}
+                  {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
+                  {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
+                  {%- capture sizes -%}
+                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
+                  (min-width: 750px) calc((100vw - 130px) / 1.667), calc((100vw - 50px) / 1.667)
+                  {%- endcapture -%}
+                  {%- else -%}
+                  {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+                  {%- capture sizes -%}
+                  (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+                  (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+                  {%- endcapture -%}
+                  {%- endif -%}
+                  {{
+                  productImage[1] | image_url: width: '1500' | image_tag: sizes: sizes, widths: '2000', fetchpriority: fetch_priority, class: 'collection3__img-back' , url: product.url
+                  }}
+                  
+                  {%- else -%}
+                  {{ 'detailed-apparel-1' | placeholder_svg_tag: 'collection3__img-back' }}
+                      
+                  {%- endif -%}
+                  </a>
+          </div>
+          <div class="collection3__product-info">
+            <div class="collection3__product-details">
+            {% if section.settings.show_title %}
+              <span class="collection3__product-title">
+              {{ product.title }}
+            </span>
+            {% endif %}
+            {% if section.settings.show_price %}
+            <span class="collection3__product-price">
+              {{ product.price | money }}
+            </span>
+            {% endif %}
+            </div>
+
+            {% assign options = '' %}
+            {% for variant in product.variants %}
+            {% assign options = options | append: ',' | append: variant.option2 %}
+            {% endfor %}
+            {% assign options = options | remove_first: ',' | split: ',' | uniq %}
+
+            {% if options.size > 0 %}
+            <div class="collection3__colors">
+              {% for option in options %}
+              <div class="collection3__color collection3__color--{{ option }}" style="display: block !important;"></div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  if section.settings.color_scheme == section.settings.section_color_scheme and section.settings.content_layout == 'no-overlap'
+    assign remove_color_classes = true
+  endif
+-%}
+
+
+
+{% schema %}
+  {
+    "name": "Collection Product Color",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+      "type": "collection",
+      "id": "collection",
+      "label": "Featured Collection"
+      },
+      {
+        "type": "range",
+        "id": "products_to_show",
+        "min": 1,
+        "max": 6,
+        "step": 1,
+        "label": "Products to show",
+        "default": 3
+      },
+      {
+      "type": "color",
+      "id": "product_bg",
+      "label": "Product Background",
+      "default": "#f6f6f6"
+      },
+        {
+        "type": "select",
+        "id": "background_shape",
+        "label": "Background Shape",
+        "options": [
+        {
+        "value": "square",
+        "label": "Square"
+        },
+        {
+        "value": "circle",
+        "label": "Circle"
+        },
+        {
+        "value": "rectangle",
+        "label": "Rectanle"
+        }
+        ],
+        "default": "rectangle"
+        },
+     {
+          "type": "select",
+          "id": "image_fit",
+          "options": [
+            {
+              "value": "cover",
+              "label": "Cover"
+            },
+            {
+              "value": "contain",
+              "label": "Contain"
+            }
+          ],
+          "default": "contain",
+          "label": "Product Image Fit"
+      },
+      {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+  
+      {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show Price",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "xxl_col",
+      "options": [
+        {
+          "value": "col-xxl-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-xxl-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-xxl-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-xxl-2",
+          "label": "6 Columns"
+        }
+      ],
+      "default": "col-xxl-4",
+      "label": "XXL Devices"
+    },
+    {
+      "type": "select",
+      "id": "xl_col",
+      "options": [
+        {
+          "value": "col-xl-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-xl-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-xl-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-xl-2",
+          "label": "6 Columns"
+        }
+      ],
+      "default": "col-xl-4",
+      "label": "XL Devices"
+    },
+    {
+      "type": "select",
+      "id": "lg_col",
+      "options": [
+        {
+          "value": "col-lg-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-lg-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-lg-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-lg-2",
+          "label": "6 Columns"
+        }
+      ],
+      "default": "col-lg-4",
+      "label": "LG Devices"
+    },  
+    {
+      "type": "select",
+      "id": "md_col",
+      "options": [
+        {
+          "value": "col-md-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-md-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-md-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-md-2",
+          "label": "6 Columns"
+        }
+      ],
+      "default": "col-md-4",
+      "label": "MD Devices"
+    },  
+    {
+      "type": "select",
+      "id": "sm_col",
+      "options": [
+        {
+          "value": "col-sm-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-sm-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-sm-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-sm-2",
+          "label": "6 Columns"
+        }
+      ],
+      "default": "col-sm-4",
+      "label": "SM Devices"
+    }
+  
+    
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "t:sections.image-with-text.blocks.heading.name",
+        "limit": 1,
+        "settings": [
+              {
+              "type": "text",
+              "id": "hero_one_title",
+              "label": "Title",
+              "default": "season's elevation"
+              },
+              {
+                "type": "select",
+                "id": "title_size",
+                "options": [
+                    {
+                      "value": "sm",
+                      "label": "Small"
+                    },
+                    {
+                      "value": "md",
+                      "label": "Medium"
+                    },
+                    {
+                      "value": "lg",
+                      "label": "Large"
+                    },
+                    {
+                      "value": "xl",
+                      "label": "Extra Large"
+                    }
+                ],
+                "default": "md",
+                "label": "Font Size"
+              }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "name": "Paragraph",
+        "limit": 1,
+        "settings": [
+            {
+            "type": "textarea",
+            "id": "hero_one_paragraph",
+            "label": "Welcome message",
+            "default": "Discover the latest trends in fashion at our exclusive online store. Elevate your style with curated  collections of chic and timeless apparel. "
+            }
+        ]
+      },
+      {
+        "type": "button",
+        "name": "t:sections.image-with-text.blocks.button.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "button_label",
+            "default": "View More",
+            "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+            "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+          },
+          {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Product Color",
+        "blocks": [
+          
+        ]
+      }
+    ]
+  }
+{% endschema %}

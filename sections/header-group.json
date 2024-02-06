@@ -9,16 +9,25 @@
           "type": "announcement",
           "settings": {
             "text": "50%OFF CHRISMAST 2023",
+            "announcement-text-color": "#ffffff",
             "link": "shopify:\/\/collections\/adidas"
+          }
+        },
+        "4e312ecf-dd05-49a4-9408-0694b68120c7": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "announcement-text-color": "#e21818",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement-bar-0",
+        "4e312ecf-dd05-49a4-9408-0694b68120c7"
       ],
       "settings": {
-        "announcement_background_color": "",
-        "announcement-text-color": "#ffffff",
+        "announcement_background_color": "linear-gradient(54deg, rgba(60, 127, 91, 1) 14%, rgba(255, 250, 99, 1) 85%)",
         "show_line_separator": true,
         "show_social": false,
         "auto_rotate": false,
@@ -30,8 +39,10 @@
     "header": {
       "type": "header",
       "settings": {
+        "header_type": "header1",
         "logo_position": "middle-left",
         "menu": "main-menu",
+        "menu_two": "main-menu-2",
         "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
