@@ -129,6 +129,24 @@
         "padding_bottom": 12
       }
     },
+    "hero_two_c7wGNQ": {
+      "type": "hero-two",
+      "settings": {
+        "hero_height": "100vh",
+        "image": "shopify:\/\/shop_images\/man-poses-in-style-at-edge-of-bed.jpg",
+        "overlay_color": "#000000",
+        "opacity": 50,
+        "button_label": "Men",
+        "button_link": "shopify:\/\/collections\/men",
+        "info_alignment": "right",
+        "image2": "shopify:\/\/shop_images\/pretty-on-pink-brick.jpg",
+        "overlay_color2": "#000000",
+        "opacity2": 50,
+        "button_label2": "Women",
+        "button_link2": "shopify:\/\/collections\/women",
+        "info_alignment2": "left"
+      }
+    },
     "related-products": {
       "type": "related-products",
       "settings": {
@@ -150,6 +168,7 @@
   },
   "order": [
     "main",
+    "hero_two_c7wGNQ",
     "related-products"
   ]
 }
