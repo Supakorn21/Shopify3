@@ -6,7 +6,8 @@
         "template--17057218658561__ce8a65ce-dd10-477d-a51f-2cd84fb620b5-heading-1": {
           "type": "heading",
           "settings": {
-            "hero_one_title": "season's elevation"
+            "hero_one_title": "season's elevation",
+            "title_size": "md"
           }
         },
         "template--17057218658561__ce8a65ce-dd10-477d-a51f-2cd84fb620b5-paragraph-1": {
@@ -29,7 +30,8 @@
         "template--17057218658561__ce8a65ce-dd10-477d-a51f-2cd84fb620b5-button-1"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/model-in-neutral-colors-by-window.jpg",
+        "hero_height": "100vh",
+        "image": "shopify://shop_images/model-in-neutral-colors-by-window.jpg",
         "overlay_color": "#000000",
         "opacity": 50,
         "info_alignment": "center",
@@ -45,20 +47,165 @@
       "type": "collection-product-color",
       "settings": {
         "collection": "dr-martens",
-        "background_shape": "square"
+        "products_to_show": 3,
+        "product_bg": "#f6f6f6",
+        "background_shape": "square",
+        "image_fit": "contain",
+        "show_title": true,
+        "show_price": true,
+        "xxl_col": "col-xxl-4",
+        "xl_col": "col-xl-4",
+        "lg_col": "col-lg-4",
+        "md_col": "col-md-4",
+        "sm_col": "col-sm-4"
       }
     },
     "hero-2": {
       "type": "hero-two",
       "settings": {
-        "image": "shopify:\/\/shop_images\/fashion-model-in-fur.jpg",
-        "image2": "shopify:\/\/shop_images\/model-in-sunglasses-and-summer-clothes.jpg"
+        "hero_height": "100vh",
+        "image": "shopify://shop_images/fashion-model-in-fur.jpg",
+        "overlay_color": "#000000",
+        "opacity": 50,
+        "button_label": "Men",
+        "button_link": "",
+        "info_alignment": "right",
+        "image2": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
+        "overlay_color2": "#000000",
+        "opacity2": 50,
+        "button_label2": "Women",
+        "button_link2": "",
+        "info_alignment2": "left"
+      }
+    },
+    "collection_product_single_n43XyA": {
+      "type": "collection-product-single",
+      "settings": {
+        "collection": "men",
+        "products_to_show": 4,
+        "product_bg": "#f6f6f6",
+        "background_shape": "rectangle",
+        "image_fit": "contain",
+        "show_title": true,
+        "show_price": true,
+        "xxl_col": "col-xxl-3",
+        "xl_col": "col-xl-3",
+        "lg_col": "col-lg-3",
+        "md_col": "col-md-3",
+        "sm_col": "col-sm-6"
+      }
+    },
+    "featured_collection_Xqpiii": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "adidas",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "hero_two_bmwAPh": {
+      "type": "hero-two",
+      "settings": {
+        "hero_height": "75vh",
+        "image": "shopify://shop_images/little-girl-with-hot-chocolate.jpg",
+        "overlay_color": "#000000",
+        "opacity": 50,
+        "button_label": "Kids",
+        "button_link": "shopify://collections/kid",
+        "info_alignment": "right",
+        "image2": "shopify://shop_images/boy-hanging-at-playground.jpg",
+        "overlay_color2": "#000000",
+        "opacity2": 50,
+        "button_label2": "Boys",
+        "button_link2": "",
+        "info_alignment2": "left"
+      }
+    },
+    "collection_product_color_JjtLRj": {
+      "type": "collection-product-color",
+      "settings": {
+        "collection": "converse",
+        "products_to_show": 3,
+        "product_bg": "#f6f6f6",
+        "background_shape": "square",
+        "image_fit": "contain",
+        "show_title": true,
+        "show_price": true,
+        "xxl_col": "col-xxl-4",
+        "xl_col": "col-xl-4",
+        "lg_col": "col-lg-4",
+        "md_col": "col-md-4",
+        "sm_col": "col-sm-4"
+      }
+    },
+    "hero_one_JfMp6A": {
+      "type": "hero-one",
+      "blocks": {
+        "heading_Cydzxg": {
+          "type": "heading",
+          "settings": {
+            "hero_one_title": "Men's fasion",
+            "title_size": "md"
+          }
+        },
+        "paragraph_T398EA": {
+          "type": "paragraph",
+          "settings": {
+            "hero_one_paragraph": "Discover the latest trends in fashion at our exclusive online store. Elevate your style with curated  collections of chic and timeless apparel."
+          }
+        },
+        "button_iXPK8z": {
+          "type": "button",
+          "settings": {
+            "button_label": "View More",
+            "button_link": "shopify://collections/men"
+          }
+        }
+      },
+      "block_order": ["heading_Cydzxg", "paragraph_T398EA", "button_iXPK8z"],
+      "settings": {
+        "hero_height": "50vh",
+        "image": "shopify://shop_images/man-dressed-in-monochrome-by-white-wall.jpg",
+        "overlay_color": "#000000",
+        "opacity": 50,
+        "info_alignment": "center",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
     "hero-1",
     "collection-product-with-color",
-    "hero-2"
+    "hero-2",
+    "collection_product_single_n43XyA",
+    "featured_collection_Xqpiii",
+    "hero_two_bmwAPh",
+    "collection_product_color_JjtLRj",
+    "hero_one_JfMp6A"
   ]
 }
