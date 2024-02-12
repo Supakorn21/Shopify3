@@ -31,7 +31,7 @@
       ],
       "settings": {
         "hero_height": "100vh",
-        "image": "shopify:\/\/shop_images\/model-in-neutral-colors-by-window.jpg",
+        "image": "shopify://shop_images/model-in-neutral-colors-by-window.jpg",
         "overlay_color": "#000000",
         "opacity": 50,
         "info_alignment": "center",
@@ -64,13 +64,13 @@
       "type": "hero-two",
       "settings": {
         "hero_height": "100vh",
-        "image": "shopify:\/\/shop_images\/fashion-model-in-fur.jpg",
+        "image": "shopify://shop_images/fashion-model-in-fur.jpg",
         "overlay_color": "#000000",
         "opacity": 50,
         "button_label": "Men",
         "button_link": "",
         "info_alignment": "right",
-        "image2": "shopify:\/\/shop_images\/model-in-sunglasses-and-summer-clothes.jpg",
+        "image2": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
         "overlay_color2": "#000000",
         "opacity2": 50,
         "button_label2": "Women",
@@ -127,13 +127,13 @@
       "type": "hero-two",
       "settings": {
         "hero_height": "75vh",
-        "image": "shopify:\/\/shop_images\/little-girl-with-hot-chocolate.jpg",
+        "image": "shopify://shop_images/little-girl-with-hot-chocolate.jpg",
         "overlay_color": "#000000",
         "opacity": 50,
         "button_label": "Kids",
-        "button_link": "shopify:\/\/collections\/kid",
+        "button_link": "shopify://collections/kid",
         "info_alignment": "right",
-        "image2": "shopify:\/\/shop_images\/boy-hanging-at-playground.jpg",
+        "image2": "shopify://shop_images/boy-hanging-at-playground.jpg",
         "overlay_color2": "#000000",
         "opacity2": 50,
         "button_label2": "Boys",
@@ -178,18 +178,14 @@
           "type": "button",
           "settings": {
             "button_label": "View More",
-            "button_link": "shopify:\/\/collections\/men"
+            "button_link": "shopify://collections/men"
           }
         }
       },
-      "block_order": [
-        "heading_Cydzxg",
-        "paragraph_T398EA",
-        "button_iXPK8z"
-      ],
+      "block_order": ["heading_Cydzxg", "paragraph_T398EA", "button_iXPK8z"],
       "settings": {
         "hero_height": "50vh",
-        "image": "shopify:\/\/shop_images\/man-dressed-in-monochrome-by-white-wall.jpg",
+        "image": "shopify://shop_images/man-dressed-in-monochrome-by-white-wall.jpg",
         "overlay_color": "#000000",
         "opacity": 50,
         "info_alignment": "center",
